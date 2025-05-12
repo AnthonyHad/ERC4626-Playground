@@ -1,18 +1,29 @@
 "use client";
 
-import { useReadContract } from "wagmi";
-import { erc4626VaultAbi } from "@/abis/erc4626Vault";
+import { useVaultOverview } from "@/hooks/useVaultOverview";
 
-const vaultAddress = "0xBe53A109B494E5c9f97b9Cd39Fe969BE68BF6204";
+export default function VaultStats({ address }: { address: `0x${string}` }) {
+  const {
+    name,
+    symbol,
+    totalAssets,
+    totalSupply,
+    isShutdown,
+    decimals,
+    isLoading,
+  } = useVaultOverview(address);
 
-export default function VaultStats() {
-  const { data, isPending, error } = useReadContract({
-    abi: erc4626VaultAbi,
-    address: vaultAddress,
-    functionName: "totalAssets",
-  });
+  if (isLoading) return <p>Loading...</p>;
 
-  if (isPending) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  return <p>Total Assets: {data?.toString()}</p>;
+  return (
+    <div>
+      <h1>
+        {name} ({symbol})
+      </h1>
+      <p>TVL: {Number(totalAssets) / 1e6} USDC</p>
+      <p>Shares: {Number(totalSupply) / 1e6}</p>
+      <p>Decimals: {decimals}</p>
+      <p>Status: {isShutdown ? "Shutdown" : "Active"}</p>
+    </div>
+  );
 }
