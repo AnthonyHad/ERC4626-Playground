@@ -1,4 +1,4 @@
-export const vaultMinimalAbi = [
+export const erc4626VaultAbi = [
   // 📛 Metadata
   {
     name: "name",
