@@ -31,6 +31,13 @@ export const erc4626VaultAbi = [
     outputs: [{ name: "", type: "uint256" }],
   },
   {
+    name: "asset",
+    type: "function",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ name: "", type: "address" }],
+  },
+  {
     name: "decimals",
     type: "function",
     stateMutability: "view",

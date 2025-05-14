@@ -27,6 +27,12 @@ export function useVaultOverview(vaultAddress: `0x${string}`) {
       {
         address: vaultAddress,
         abi: erc4626VaultAbi,
+        functionName: "convertToAssets",
+        args: [BigInt(1e18)],
+      },
+      {
+        address: vaultAddress,
+        abi: erc4626VaultAbi,
         functionName: "isShutdown",
       },
       {
@@ -37,7 +43,7 @@ export function useVaultOverview(vaultAddress: `0x${string}`) {
     ],
   });
 
-  const [name, symbol, totalAssets, totalSupply, isShutdown, decimals] =
+  const [name, symbol, totalAssets, totalSupply, price, isShutdown, decimals] =
     data || [];
 
   return {
@@ -45,6 +51,7 @@ export function useVaultOverview(vaultAddress: `0x${string}`) {
     symbol: symbol?.result as string | undefined,
     totalAssets: totalAssets?.result as bigint | undefined,
     totalSupply: totalSupply?.result as bigint | undefined,
+    price: price?.result as bigint | undefined,
     isShutdown: isShutdown?.result as boolean | undefined,
     decimals: decimals?.result as number | undefined,
     isLoading,

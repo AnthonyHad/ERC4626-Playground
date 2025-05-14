@@ -8,6 +8,7 @@ export default function VaultStats({ address }: { address: `0x${string}` }) {
     symbol,
     totalAssets,
     totalSupply,
+    price,
     isShutdown,
     decimals,
     isLoading,
@@ -22,7 +23,12 @@ export default function VaultStats({ address }: { address: `0x${string}` }) {
       </h1>
       <p>TVL: {Number(totalAssets) / 1e6} USDC</p>
       <p>Shares: {Number(totalSupply) / 1e6}</p>
-      <p>Decimals: {decimals}</p>
+      <p>
+        Share Price:{" "}
+        {decimals !== undefined && price !== undefined
+          ? (Number(price) / 10 ** 18).toFixed(6)
+          : "Loading..."}
+      </p>
       <p>Status: {isShutdown ? "Shutdown" : "Active"}</p>
     </div>
   );
