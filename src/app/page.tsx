@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import VaultStats from "@/components/vault-stats";
+import VaultStats from "@/components/vaultStats";
 
 const vaultAddress = "0xBe53A109B494E5c9f97b9Cd39Fe969BE68BF6204";
 

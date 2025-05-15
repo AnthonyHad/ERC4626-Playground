@@ -1,7 +1,12 @@
+// components/VaultStats.tsx
 "use client";
 
 import { useVaultAssetInfo } from "@/hooks/useVaultAssetInfo";
 import { useVaultOverview } from "@/hooks/useVaultOverview";
+
+// 1) import your chart
+// ✅ relative to the same folder
+import VaultApyChart from "./vaultApyChart";
 
 export default function VaultStats({ address }: { address: `0x${string}` }) {
   const {
@@ -9,7 +14,6 @@ export default function VaultStats({ address }: { address: `0x${string}` }) {
     symbol,
     totalAssets,
     totalSupply,
-    price,
     isShutdown,
     decimals,
     isLoading,
@@ -44,8 +48,14 @@ export default function VaultStats({ address }: { address: `0x${string}` }) {
         {assetSymbol}
       </p>
       <p>Shares: {(Number(totalSupply) / 10 ** (decimals ?? 18)).toFixed(2)}</p>
-      <p>Share Price:{sharePrice}</p>
+      <p>Share Price: {sharePrice?.toFixed(6)}</p>
       <p>Status: {isShutdown ? "Shutdown" : "Active"}</p>
+
+      {/* 2) render the chart */}
+      <div style={{ marginTop: 24 }}>
+        <h2 className="text-lg mb-2">Historic APY (last 90 days)</h2>
+        <VaultApyChart vault={address} days={5} />
+      </div>
     </div>
   );
 }
