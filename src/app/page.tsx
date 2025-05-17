@@ -2,7 +2,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import VaultStats from "@/components/vaultStats";
 
-const vaultAddress = "0xBe53A109B494E5c9f97b9Cd39Fe969BE68BF6204";
+const vaultAddress = "0xF7DE3c70F2db39a188A81052d2f3C8e3e217822a";
 
 export default function Home() {
   return (

@@ -54,7 +54,7 @@ export default function VaultStats({ address }: { address: `0x${string}` }) {
       {/* 2) render the chart */}
       <div style={{ marginTop: 24 }}>
         <h2 className="text-lg mb-2">Historic APY (last 90 days)</h2>
-        <VaultApyChart vault={address} days={5} />
+        <VaultApyChart vault={address} days={60} />
       </div>
     </div>
   );
